@@ -45,6 +45,20 @@ var success  = document.getElementById('lead-success');
 var consent  = document.getElementById('lead-consent');
 var submit   = document.getElementById('lead-submit');
 var closeBtn = document.getElementById('lead-close');
+/* ── Máscara telefone ── */
+document.getElementById('lead-tel').addEventListener('input', function () {
+  var v = this.value.replace(/\D/g, '').substring(0, 11);
+  if (v.length > 10) {
+    v = v.replace(/^(\d{2})(\d{5})(\d{4}).*/, '($1) $2-$3');
+  } else if (v.length > 6) {
+    v = v.replace(/^(\d{2})(\d{4})(\d{0,4}).*/, '($1) $2-$3');
+  } else if (v.length > 2) {
+    v = v.replace(/^(\d{2})(\d{0,5})/, '($1) $2');
+  } else {
+    v = v.replace(/^(\d*)/, '($1');
+  }
+  this.value = v;
+});
 
 function openPopup() {
   overlay.style.display = 'flex';
